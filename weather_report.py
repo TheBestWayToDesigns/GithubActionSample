@@ -147,8 +147,8 @@ def send_weather(access_token, weather):
             }
         }
     }
-    url = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}'.format(access_token)
-    print(requests.post(url, json.dumps(body2)).text)
+    url2 = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}'.format(access_token)
+    print(requests.post(url2, json.dumps(body2)).text)
 
 
 

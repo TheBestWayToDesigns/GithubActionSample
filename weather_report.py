@@ -110,7 +110,7 @@ def send_weather(access_token, weather):
             },
             "today_note": {
                 #"value": get_daily_love()
-                "value": "come on ! "
+                "value": "❤i love you❤"
             }
         }
     }

@@ -11,6 +11,10 @@ appSecret = os.environ.get("APP_SECRET")
 openId = os.environ.get("OPEN_ID")
 # 天气预报模板ID
 weather_template_id = os.environ.get("TEMPLATE_ID")
+# 收信人ID即 用户列表中的微信号2
+openId2 = os.environ.get("OPEN_ID2")
+# 天气预报模板ID2
+weather_template_id2 = os.environ.get("TEMPLATE_ID2")
 
 def get_weather(my_city):
     urls = ["http://www.weather.com.cn/textFC/hb.shtml",
@@ -110,12 +114,41 @@ def send_weather(access_token, weather):
             },
             "today_note": {
                 #"value": get_daily_love()
-                "value": "i love you "
+                "value": "come on ! "
             }
         }
     }
     url = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}'.format(access_token)
     print(requests.post(url, json.dumps(body)).text)
+
+    body2 = {
+        "touser": openId2.strip(),
+        "template_id": weather_template_id2.strip(),
+        "url": "https://weixin.qq.com",
+        "data": {
+            "date": {
+                "value": today_str
+            },
+            "region": {
+                "value": weather[0]
+            },
+            "weather": {
+                "value": weather[2]
+            },
+            "temp": {
+                "value": weather[1]
+            },
+            "wind_dir": {
+                "value": weather[3]
+            },
+            "today_note": {
+                #"value": get_daily_love()
+                "value": "i love you!"
+            }
+        }
+    }
+    url = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}'.format(access_token)
+    print(requests.post(url, json.dumps(body2)).text)
 
 
 
